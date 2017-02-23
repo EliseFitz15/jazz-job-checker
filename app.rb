@@ -2,8 +2,11 @@ require "sinatra"
 require 'open-uri'
 require 'nokogiri'
 require 'httparty'
-require 'dotenv'
-Dotenv.load
+
+configure :development do
+  require 'dotenv'
+  Dotenv.load
+end
 
 get "/" do
   @jobs = HTTParty.get("https://api.resumatorapi.com/v1/jobs/status/open/private/false?apikey=#{ENV["JAZZ_API_KEY"]}")
