@@ -14,9 +14,9 @@ get "/" do
 end
 
 get "/jobs" do
-  @url = "https://develop.raizlabs.xyz/careers/"
   jazz_posted_jobs = HTTParty.get("https://api.resumatorapi.com/v1/jobs/status/open/private/false?apikey=#{ENV["JAZZ_API_KEY"]}")
 
+  @url = "https://develop.raizlabs.xyz/careers/"
   doc = Nokogiri::HTML(open(@url)) do |config|
     config.noblanks.nonet
   end
